@@ -1,0 +1,49 @@
+% ==============================================================================
+% Name: 	latex-bbb-whiteboard
+% Version:	1.0
+% Description: 	This is a LaTeX template for creating whiteboards for
+%		BigBlueButton with proportions of the default whiteboard at
+%		[https://github.com/bigbluebutton/bigbluebutton/tree/develop/
+%		bigbluebutton-config/web/default.pdf]
+% Requires:	geometry
+%
+% Copyright (C) 2021 Pavel Hajek
+% MIT License [https://opensource.org/licenses/MIT]
+% ==============================================================================
+
+% ==============================================================================
+% PARAMETERS
+% ==============================================================================
+
+% Width of the whiteboard (default 677mm)
+\def\BBBPaperWidth{677mm}
+% Height of the whiteboard (default 381mm)
+\def\BBBPaperHeight{381mm}
+% Number of empty whiteboard slides (default 40)
+\def\NumberOfSlides{40}
+% Page number
+\def\Page{\Huge PAGE \arabic{page}}
+% Headline
+\def\Headline{\Huge TITLE, \the\day.\the\month.\the\year}
+
+% ==============================================================================
+% SOURCE CODE
+% ==============================================================================
+
+\documentclass{article}
+%
+\usepackage[paperwidth=\BBBPaperWidth,paperheight=\BBBPaperHeight,left=10mm,right=10mm,top=10mm,bottom=20mm]{geometry}
+%
+\begin{document}
+	\let\thepage\Page
+	\makeatletter
+	\newcounter{slide}
+	\@whilenum\value{slide}<\NumberOfSlides\do
+	{
+		\stepcounter{slide}
+		\newpage
+		\thispagestyle{plain}
+		\noindent\Headline
+	}
+	\makeatother
+\end{document}
